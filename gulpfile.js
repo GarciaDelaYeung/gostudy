@@ -15,8 +15,8 @@ gulp.task('styles', function (){
 			return "Message to the notifier: " + error.message;
  				}))
 			.pipe(concat('style.css'))
-			.pipe(gulp.dest('./'))
 			.pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1'))
+			.pipe(gulp.dest('./'))
 });
 
 gulp.task('jshint', function() {
