@@ -1,0 +1,8 @@
+header {
+	background: red;
+	height: 100vh;
+	@include flexBox;
+	h1 {
+		margin: auto;
+	}
+}
