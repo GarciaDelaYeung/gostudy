@@ -128,11 +128,11 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
   box-sizing: border-box; }
 
 header {
-  background: red;
   height: 100vh;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
-  display: flex; }
+  display: flex;
+  border: 1px solid red; }
   header h1 {
     margin: auto; }
