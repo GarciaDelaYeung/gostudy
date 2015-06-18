@@ -23,50 +23,54 @@
 <!-- LANDING PANEL - HEADER -->
 <header>
 	<h1>Go Study</h1>
+
+	<section class="noise">
+		<div class="wrapper">
+			<div class="noiseLevel">
+				<label for="noNoise"><img src="images/bubble.png"></label>
+				<h4>Quiet Space</h4>
+				<input class="noiseLoc" id="noNoise" type="radio" name="noiseLoc" value="library">
+			</div>
+			<div class="noiseLevel">
+				<label for="yesNoise"><img src="images/bubbleEx.png"></label>
+				<h4></h4>
+				<input class="noiseLoc" id="yesNoise" type="radio" name="noiseLoc" value="cafe">
+			</div>
+		</div>
+	</section>
+
+	<section class="distance">
+		<div class="wrapper">
+			<div class="distanceType">
+				<label for="walking"><img src="images/walk.png"></label>
+				<h4>Walk</h4>
+				<input class="transport" id="walking" type="radio" name="transport" value="1000">
+			</div>
+			<div class="distanceType">
+				<label for="biking"><img src="images/bike.png"></label>
+				<h4>Bike</h4>
+				<input class="transport" id="biking" type="radio" name="transport" value="3000">
+			</div>
+			<div class="distanceType">
+				<label for="driving"><img src="images/drive.png"></label>
+				<h4>Drive</h4>
+				<input class="transport" id="driving" type="radio" name="transport" value="5000">
+			</div>
+		</div>
+	</section>
+	<section class="Search">
+		<div class="wrapper">
+			<input type="submit" id="submit" class="submit" value="Study Location Please!">
+		</div>
+	</section>
+	<summary class="printContainer">
+		<div class="wrapper">
+			<div class="printItems">
+				
+			</div>
+		</div>
+	</summary>
 </header>
-
-<section class="noise">
-	<div class="wrapper">
-		<div class="noiseLevel">
-			<label for="noNoise"><img src="images/bubble.png"></label>
-			<h4>Quiet Space</h4>
-			<input class="noiseLoc" id="noNoise" type="radio" name="noiseLoc" value="library">
-		</div>
-		<div class="noiseLevel">
-			<label for="yesNoise"><img src="images/bubbleEx.png"></label>
-			<h4></h4>
-			<input class="noiseLoc" id="yesNoise" type="radio" name="noiseLoc" value="cafe">
-		</div>
-	</div>
-</section>
-
-<section class="distance">
-	<div class="wrapper">
-		<div class="distanceType">
-			<label for="walking"><img src="images/walk.png"></label>
-			<h4>Walk</h4>
-			<input class="transport" id="walking" type="radio" name="transport" value="1000">
-		</div>
-		<div class="distanceType">
-			<label for="biking"><img src="images/bike.png"></label>
-			<h4>Bike</h4>
-			<input class="transport" id="biking" type="radio" name="transport" value="3000">
-		</div>
-		<div class="distanceType">
-			<label for="driving"><img src="images/drive.png"></label>
-			<h4>Drive</h4>
-			<input class="transport" id="driving" type="radio" name="transport" value="5000">
-		</div>
-	</div>
-</section>
-
-<section class="printContainer">
-	<div class="wrapper">
-		<div class="printItems">
-			
-		</div>
-	</div>
-</section>
 
 
 
