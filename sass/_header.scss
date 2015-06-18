@@ -1,8 +1,27 @@
 header {
-	height: 100vh;
 	display: flex;
+	flex-direction: column;
 	border: 1px solid red;
 	h1 {
-		margin: auto;
+		margin: 0 auto;
+	}
+}
+.wrapper {
+	width: 90%;
+	margin: 0 auto;
+}
+.flex {
+	display: flex;
+}
+.noise {
+	background: blue;
+	.flex {
+		justify-content: space-around;
+	}
+}
+.distance {
+	background: green;
+	.flex {
+		justify-content: space-around;
 	}
 }
