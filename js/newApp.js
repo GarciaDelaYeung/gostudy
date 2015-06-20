@@ -19,7 +19,7 @@ studyApp.getLocation = function() {
 
 studyApp.getInfo = function(location, distance){
     $.ajax({
-        url : 'https://api.foursquare.com/v2/venues/search',
+        url : 'https://api.foursquare.com/v2/venues/explore',
         dataType : 'jsonp',
         type : 'GET',
         data : {
@@ -28,17 +28,18 @@ studyApp.getInfo = function(location, distance){
             v: '20150615',
             ll: studyApp.lat + ',' + studyApp.lng,
             limit: 50,
+            venuePhotos: 1,
             query: location,
             radius: distance
         },
         success: function(res) {
             console.log(res);
             if (distance == '1000') {
-                studyApp.displayWalk(res.response.venues);
-            } else if (distance == '3000') {
-                studyApp.displayBike(res.response.venues);
+                studyApp.displayWalk(res.response.groups[0].items);
             } else if (distance == '5000') {
-                studyApp.displayDrive(res.response.venues);
+                studyApp.displayBike(res.response.groups[0].items);
+            } else if (distance == '10000') {
+                studyApp.displayDrive(res.response.groups[0].items);
             }
         }
     });
@@ -55,39 +56,39 @@ studyApp.events = function() {
 };
 
 studyApp.displayWalk = function(studyInfo) {
-    console.log(studyInfo[0].location.distance);
+    console.log(studyInfo[0].venue.location.distance);
     console.log(studyInfo);
     $('.printContainer').empty();
     $.each(studyInfo, function(i, study) {
-        if (studyInfo[i].location.distance < 1500) {
-            var $name = $('<h3>').text(study.name);  
-            var $location = $('<p>').text(study.location.address);
-            var $distance = $('<p>').text('You are ' + study.location.distance + 'm away.')
+        if (studyInfo[i].venue.location.distance < 1500) {
+            var $name = $('<h3>').text(study.venue.name);  
+            var $location = $('<p>').text(study.venue.location.address);
+            var $distance = $('<p>').text('You are ' + study.venue.location.distance + 'm away.')
             $('.printContainer').append($name, $location, $distance);
         };
     });
 };
 
 studyApp.displayBike = function(studyInfo) {
-    console.log(studyInfo[0].location.distance);
+    console.log(studyInfo[0].venue.location.distance);
     console.log(studyInfo);
     $('.printContainer').empty();
     $.each(studyInfo, function(i, study) {
-        if (studyInfo[i].location.distance > 3000) {
-            var $name = $('<h3>').text(study.name);  
-            var $location = $('<p>').text(study.location.address);
-            var $distance = $('<p>').text('You are ' + study.location.distance + 'm away.')
+        if (studyInfo[i].venue.location.distance > 2500 && studyInfo[i].venue.location.distance < 5000) {
+            var $name = $('<h3>').text(studyInfo[i].venue.name);  
+            var $location = $('<p>').text(study.venue.location.address);
+            var $distance = $('<p>').text('You are ' + study.venue.location.distance + 'm away.')
             $('.printContainer').append($name, $location, $distance);
         };
     });
 };
 
 studyApp.displayDrive = function(studyInfo) {
-    console.log(studyInfo[0].location.distance);
+    console.log(studyInfo[0].venue.location.distance);
     console.log(studyInfo);
     $('.printContainer').empty();
     $.each(studyInfo, function(i, study) {
-        if (studyInfo[i].location.distance > 5000) {
+        if (studyInfo[i].venue.location.distance > 5000) {
             var $name = $('<h3>').text(study.name);  
             var $location = $('<p>').text(study.location.address);
             var $distance = $('<p>').text('You are ' + study.location.distance + 'm away.')
