@@ -63,8 +63,10 @@ studyApp.displayWalk = function(studyInfo) {
         if (studyInfo[i].venue.location.distance < 1500) {
             var $name = $('<h3>').text(study.venue.name);  
             var $location = $('<p>').text(study.venue.location.address);
-            var $distance = $('<p>').text('You are ' + study.venue.location.distance + 'm away.')
-            $('.printContainer').append($name, $location, $distance);
+            var $distance = $('<p>').text('You are ' + study.venue.location.distance + 'm away.');
+            //you can change the photo size to 100x100 too
+            var $photo = $('<img>').attr('src',study.venue.photos.groups[0].items[0].prefix + '300x300' + study.venue.photos.groups[0].items[0].suffix);
+            $('.printContainer').append($name, $location, $distance, $photo);
         };
     });
 };
@@ -77,8 +79,9 @@ studyApp.displayBike = function(studyInfo) {
         if (studyInfo[i].venue.location.distance > 2500 && studyInfo[i].venue.location.distance < 5000) {
             var $name = $('<h3>').text(studyInfo[i].venue.name);  
             var $location = $('<p>').text(study.venue.location.address);
-            var $distance = $('<p>').text('You are ' + study.venue.location.distance + 'm away.')
-            $('.printContainer').append($name, $location, $distance);
+            var $distance = $('<p>').text('You are ' + study.venue.location.distance + 'm away.');
+            var $photo = $('<img>').attr('src',study.venue.photos.groups[0].items[0].prefix + '300x300' + study.venue.photos.groups[0].items[0].suffix);
+            $('.printContainer').append($name, $location, $distance, $photo);
         };
     });
 };
@@ -91,8 +94,9 @@ studyApp.displayDrive = function(studyInfo) {
         if (studyInfo[i].venue.location.distance > 5000) {
             var $name = $('<h3>').text(study.name);  
             var $location = $('<p>').text(study.location.address);
-            var $distance = $('<p>').text('You are ' + study.location.distance + 'm away.')
-            $('.printContainer').append($name, $location, $distance);
+            var $distance = $('<p>').text('You are ' + study.location.distance + 'm away.');
+            var $photo = $('<img>').attr('src',study.venue.photos.groups[0].items[0].prefix + '300x300' + study.venue.photos.groups[0].items[0].suffix);
+            $('.printContainer').append($name, $location, $distance, $photo);
         };
     });
 };
