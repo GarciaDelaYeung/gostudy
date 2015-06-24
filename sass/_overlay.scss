@@ -1,0 +1,201 @@
+// ============= FULLSSCREEN OVERLAY =============
+
+#trigger-overlay {
+	font-size: 30px;
+	position: absolute;
+	top: 15px;
+	right: 25px;
+	color: rgba(255,255,255,0.5);
+	&:hover {
+		color: rgba(255,255,255,1.0);
+		cursor: pointer;
+	}
+}
+
+// Overlay style
+.overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  // background: rgba(0, 0, 0, 0.9);
+  p {
+  	color: #fff;
+  	font-family: 'Lato';
+    font-weight: 300;
+  	font-size: 12px;
+  	line-height: 20px;
+  	letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+  p.overlayDes {
+  	padding-top: 150px;
+  	margin: 0 auto;
+    width: 500px;
+    text-align: center;
+  	@media #{$mobile} {
+  		margin: 0 7%;
+  	} 
+  	@media #{$mobile-landscape} {
+  		display: none;
+  	} 
+  	a {
+  	color: $red;
+  	}
+  }
+  p.forkDesc {
+    margin: 50px auto 0;
+    text-align: center;
+  }
+  a {
+    text-decoration: none;
+  }
+  i.forkLink {
+  	color: $red;
+  	padding-top: 10px;
+  }
+}
+
+// Overlay closing cross
+.overlay .overlay-close {
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  overflow: hidden;
+  border: none;
+  background: url(../images/cross.png) no-repeat center center;
+  text-indent: 200%;
+  color: transparent;
+  outline: none;
+  z-index: 100;
+}
+
+// Menu style
+.overlay nav {
+  text-align: center;
+  position: relative;
+  width: 100%;
+  top: 15%;
+  // height: 60%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.overlay ul {
+  list-style: none;
+  padding: 0;
+  display: inline-block;
+  height: 100%;
+  @media #{$mobile}, #{$mobile-landscape} {
+  	display: flex;
+  	flex-wrap: wrap;
+  	align-items: center;
+  	justify-content: center;
+  } 
+}
+
+.overlay ul li {
+  height: 20%;
+  height: calc(100% / 5);
+  min-height: 54px;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  float: left;
+  @media #{$mobile}, #{$mobile-landscape} {
+  	flex: 1 0 30%;
+  } 
+}
+
+.overlay ul li a {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  display: inline-block;
+  color: #fff;
+  -webkit-transition: color 0.2s;
+  transition: color 0.2s;
+  padding: 25px 0;
+  width: 120px;
+  height: 120px;
+}
+
+.overlay i {
+  display: block;
+  font-size: 40px;
+}
+
+.overlay ul li a:hover,
+.overlay ul li a:focus {
+  color: #f0f0f0;
+  width: 120px;
+  height: 120px;
+}
+
+// Effects
+html, body {
+  overflow-x: hidden;
+}
+
+.container {
+  overflow-x: hidden;
+  -webkit-transition: -webkit-transform 0.5s;
+  transition: transform 0.5s; 
+}
+
+.container.overlay-open {
+  // -webkit-transform: translateX(50%);
+  // transform: translateX(50%);
+}
+
+.container::after {
+  content: '';
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  // background: rgba(0,0,0,0.6);
+  -webkit-transition: opacity 0.5s, visibility 0s 0.5s;
+  transition: opacity 0.5s, visibility 0s 0.5s;
+}
+
+.container.overlay-open::after {
+  visibility: visible;
+  opacity: 1;
+  -webkit-transition: opacity 0.5s;
+  transition: opacity 0.5s;
+}
+
+.overlay-contentpush {
+  background: rgba(0, 0, 0, 0.9);
+  visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform: translateX(-100%);
+  transform: translateX(-100%);
+  -webkit-transition: -webkit-transform 0.5s, visibility 0s 0.5s;
+  transition: transform 0.5s, visibility 0s 0.5s;
+}
+
+.overlay-contentpush.open {
+  visibility: visible;
+  -webkit-transform: translateX(0%);
+  transform: translateX(0%);
+  -webkit-transition: -webkit-transform 0.5s;
+  transition: transform 0.5s;
+}
+
+@media screen and (max-height: 30.5em) {
+  .overlay nav {
+    height: 70%;
+    font-size: 34px;
+  }
+  .overlay ul li {
+    min-height: 34px;
+  }
+}

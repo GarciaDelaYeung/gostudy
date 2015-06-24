@@ -270,8 +270,8 @@ musicApp.getInfo = function(genre){
 musicApp.displayMusic = function(playlists) { 
   console.log(playlists);
   $('.musicItems').empty();
-  // var $title = $('<h4>').text('Study Playlists');
-  // $('.musicItems').append($title);
+  var $title = $('<h4>').text('Study Playlists');
+  $('.musicItems').append($title);
   $.each(playlists, function(i, single) {
     var $name = $('<h3>').html('<a href ="'+ single.external_urls.spotify +'" target="_blank">'+ single.name + '</a>'); 
     var $photo = $('<img>').attr('src', single.images[0].url);

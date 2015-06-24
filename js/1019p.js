@@ -47,37 +47,35 @@ studyApp.getInfo = function(location, distance){
 };
 
 studyApp.events = function() {
- $('#submit').on('click', function(){
-    $('.printContainer').removeClass('hidden');
-    $('.backToTop').removeClass('hidden');
-   var searchLoc = $('input.noiseLoc:checked').val();
-   // console.log(searchLoc);
-   var searchDist = $('input.transport:checked').val();
-   // console.log(searchDist);
-   var searchMusic = $('input.music:checked').val();
-   studyApp.getInfo(searchLoc, searchDist);
-   musicApp.getInfo(searchMusic);
-   $('html, body').animate({
-     scrollTop: $('.printItems').offset().top
-   }, 1500);
- })
- $('input').click(function() {
-   $('input:not(:checked)').parent().removeClass('selected'); 
-   $('input:checked').parent().addClass('selected');
- });
+  $('#submit').on('click', function(){
+    var searchLoc = $('input.noiseLoc:checked').val();
+    // console.log(searchLoc);
+    var searchDist = $('input.transport:checked').val();
+    // console.log(searchDist);
+    studyApp.getInfo(searchLoc, searchDist);
+  })
+
+  $('.noiseLevel, .distanceType').toggleClass('selected');
+
+  $('.printItems').on('click','.singleItem', function() {
+    var $venueLatLng = $(this).data('latlng');
+    var $venuesLat = $(this).data('lat');
+    var $venuesLng = $(this).data('lng');
+    console.log($venuesLat);
+
+    studyApp.mapDisplay($venueLatLng, $venuesLat, $venuesLng);
+  });
 };
 
 studyApp.displayWalk = function(studyInfo) {
   // console.log(studyInfo[0].venue.location.distance);
   console.log(studyInfo);
-  $('.printItems').empty();
-  var $title = $('<h4>').text('Study Spots');
-  $('.printItems').append($title);
+  $('.printContainer').empty();
   if (studyInfo.length == 0) {
     console.log('NO RESULTS!!! YOOOO!!!!');
     var $errorMsg = $('<p>').addClass('errorMsg').text('Sorry, no results have come back. Please try a different method of transportation (bike, drive).');
     var $singleItem = $('<div>').addClass('singleItem', 'clearfix').append($errorMsg);
-    $('.printItems').append($singleItem);
+    $('.printContainer').append($singleItem);
   } else {
     $.each(studyInfo, function(i, study) {
       if (studyInfo[i].venue.location.distance < 1500) {
@@ -89,7 +87,7 @@ studyApp.displayWalk = function(studyInfo) {
           var $itemInnerInfo = $('<div>').addClass('itemInnerInfo').append($name, $location, $distance);
           var $itemInfo = $('<div>').addClass('itemInfo').append($itemInnerInfo, $photoContainer);
           var $singleItem = $('<div>').addClass('singleItem', 'clearfix').append($itemInfo);
-          $('.printItems').append($singleItem);
+          $('.printContainer').append($singleItem);
         } else {
           var $name = $('<h3>').html('<a href ="https://foursquare.com/v/'+ study.venue.id +'" target="_blank">'+ study.venue.name + '</a>');
           var $location = $('<p>').text(study.venue.location.address);
@@ -100,7 +98,7 @@ studyApp.displayWalk = function(studyInfo) {
           var $itemInnerInfo = $('<div>').addClass('itemInnerInfo').append($name, $location, $distance);
           var $itemInfo = $('<div>').addClass('itemInfo').append($itemInnerInfo, $photoContainer);
           var $singleItem = $('<div>').addClass('singleItem', 'clearfix').append($itemInfo);
-          $('.printItems').append($singleItem);
+          $('.printContainer').append($singleItem);
         };
       };
     });
@@ -110,14 +108,12 @@ studyApp.displayWalk = function(studyInfo) {
 studyApp.displayBike = function(studyInfo) {
   // console.log(studyInfo[0].venue.location.distance);
   console.log(studyInfo);
-  $('.printItems').empty();
-  var $title = $('<h4>').text('Study Spots');
-  $('.printItems').append($title);
+  $('.printContainer').empty();
   if (studyInfo.length == 0) {
     console.log('NO RESULTS!!! YOOOO!!!!');
     var $errorMsg = $('<p>').addClass('errorMsg').text('Sorry, no results have come back. Please try a different method of transportation (walk, drive).');
     var $singleItem = $('<div>').addClass('singleItem', 'clearfix').append($errorMsg);
-    $('.printItems').append($singleItem);
+    $('.printContainer').append($singleItem);
   } else {
     $.each(studyInfo, function(i, study) {
       if (studyInfo[i].venue.location.distance > 1500 && studyInfo[i].venue.location.distance < 5000) {
@@ -129,7 +125,7 @@ studyApp.displayBike = function(studyInfo) {
           var $itemInnerInfo = $('<div>').addClass('itemInnerInfo').append($name, $location, $distance);
           var $itemInfo = $('<div>').addClass('itemInfo').append($itemInnerInfo, $photoContainer);
           var $singleItem = $('<div>').addClass('singleItem', 'clearfix').append($itemInfo);
-          $('.printItems').append($singleItem);
+          $('.printContainer').append($singleItem);
         } else {
           var $name = $('<h3>').html('<a href ="https://foursquare.com/v/'+ study.venue.id +'" target="_blank">'+ study.venue.name + '</a>');  
           var $location = $('<p>').text(study.venue.location.address);
@@ -140,7 +136,7 @@ studyApp.displayBike = function(studyInfo) {
           var $itemInnerInfo = $('<div>').addClass('itemInnerInfo').append($name, $location, $distance);
           var $itemInfo = $('<div>').addClass('itemInfo').append($itemInnerInfo, $photoContainer);
           var $singleItem = $('<div>').addClass('singleItem', 'clearfix').append($itemInfo);
-          $('.printItems').append($singleItem);
+          $('.printContainer').append($singleItem);
 
         };
       };
@@ -151,20 +147,21 @@ studyApp.displayBike = function(studyInfo) {
 studyApp.displayDrive = function(studyInfo) {
   // console.log(studyInfo[0].venue.location.distance);
   console.log(studyInfo);
-  $('.printItems').empty();
-  var $title = $('<h4>').text('Study Spots');
-  $('.printItems').append($title);
+  $('.printContainer').empty();
   if (studyInfo.length == 0) {
     console.log('NO RESULTS!!! YOOOO!!!!');
     var $errorMsg = $('<p>').addClass('errorMsg').text('Sorry, no results have come back. Please try a different method of transportation (walk, bike).');
     var $singleItem = $('<div>').addClass('singleItem', 'clearfix').append($errorMsg);
-    $('.printItems').append($singleItem);
+    $('.printContainer').append($singleItem);
   } else {
     $.each(studyInfo, function(i, study) {
       if (studyInfo[i].venue.location.distance > 5000) {
         //pass the search results into the google maps function
-        studyApp.mapDisplay(studyInfo, studyApp.lat, studyApp.lng);
+        // studyApp.mapDisplay(studyInfo, studyApp.lat, studyApp.lng);
         if (study.venue.photos.groups.length == 0) {
+          var $venueLocation = study.venue.location.lat + ', ' + study.venue.location.lng;
+          var $venueLattitude = study.venue.location.lat;
+          var $venueLongitude = study.venue.location.lng;
           var $name = $('<h3>').html('<a href ="https://foursquare.com/v/'+ study.venue.id +'" target="_blank">'+ study.venue.name + '</a>');  
           var $location = $('<p>').text(study.venue.location.address);
           var $distance = $('<p>').text('You are ' + study.venue.location.distance + 'm away.');
@@ -172,8 +169,14 @@ studyApp.displayDrive = function(studyInfo) {
           var $itemInnerInfo = $('<div>').addClass('itemInnerInfo').append($name, $location, $distance);
           var $itemInfo = $('<div>').addClass('itemInfo').append($itemInnerInfo, $photoContainer);
           var $singleItem = $('<div>').addClass('singleItem', 'clearfix').append($itemInfo);
-          $('.printItems').append($singleItem);
+          $singleItem.data('latlng', $venueLocation);
+          $singleItem.data('lat', $venueLattitude);
+          $singleItem.data('lng', $venueLongitude);
+          $('.printContainer').append($singleItem);
         } else {
+          var $venueLocation = study.venue.location.lat + ', ' + study.venue.location.lng;
+          var $venueLattitude = study.venue.location.lat;
+          var $venueLongitude = study.venue.location.lng;
           var $name = $('<h3>').html('<a href ="https://foursquare.com/v/'+ study.venue.id +'" target="_blank">'+ study.venue.name + '</a>');  
           var $location = $('<p>').text(study.venue.location.address);
           var $distance = $('<p>').text('You are ' + study.venue.location.distance + 'm away.');
@@ -183,118 +186,70 @@ studyApp.displayDrive = function(studyInfo) {
           var $itemInnerInfo = $('<div>').addClass('itemInnerInfo').append($name, $location, $distance);
           var $itemInfo = $('<div>').addClass('itemInfo').append($itemInnerInfo, $photoContainer);
           var $singleItem = $('<div>').addClass('singleItem', 'clearfix').append($itemInfo);
-          $('.printItems').append($singleItem);
-
+          $('.printContainer').append($singleItem);
+          $('.singleItem').data('latlng', $venueLocation);
+          $('.singleItem').data('lat', $venueLattitude);
+          $('.singleItem').data('lng', $venueLongitude);
         };
       };
     });
   };
 };
 
-studyApp.mapDisplay = function(mapItems, oLat, oLng) {
-  console.log(mapItems);
+studyApp.mapDisplay = function(placeLatLng, placeLat, placeLng) {
+  // console.log(mapItems);
   console.log('mapDisplay was initialized!')
+  //MAP VARIABLES
 
-}; // end of mapDisplay
+  userLocation = new google.maps.LatLng(43.657843882058906, -79.380544424057);
+  ryeLib = new google.maps.LatLng(placeLatLng);
+  directionsService = new google.maps.DirectionsService();
 
-//MAP VARIABLES
+  //SOME KIND OF MAP?????
 
-userLocation = new google.maps.LatLng(studyApp.lat, studyApp.lng);
-ryeLib = new google.maps.LatLng(43.657843882058906, -79.380544424057);
-directionsService = new google.maps.DirectionsService();
+  function initialize() {
+    var mapOptions = {
+      center: userLocation,
+      zoom:15,
+      mapTypeId:google.maps.MapTypeId.ROADMAP
+    };
+    
+    var marker = new google.maps.Marker({
+      position: userLocation,
+    });
+    
+    var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+    marker.setMap(map);
 
-//SOME KIND OF MAP?????
+    directionDisplay = new google.maps.DirectionsRenderer();
+    directionDisplay.setMap(map);
 
-function initialize() {
-  var mapOptions = {
-    center: userLocation,
-    zoom:15,
-    mapTypeId:google.maps.MapTypeId.ROADMAP
-  };
-  
-  var marker = new google.maps.Marker({
-    position: userLocation,
-  });
-  
-  var map = new google.maps.Map(document.getElementById('map'), mapOptions);
-  marker.setMap(map);
-
-  directionDisplay = new google.maps.DirectionsRenderer();
-  directionDisplay.setMap(map);
-
-};
-
-function calcRoute() {
-  var selectedMode = document.getElementById('mode').value;
-  var request = {
-    origin: userLocation,
-    destination: ryeLib,
-    travelMode: google.maps.TravelMode[selectedMode]
   };
 
-  directionsService.route(request, function(response, status){
-    if (status == google.maps.DirectionsStatus.OK) {
-      directionDisplay.setDirections(response);
-    }
-  });
-}
+  function calcRoute() {
+    var selectedMode = document.getElementById('mode').value;
+    var request = {
+      origin: userLocation,
+      destination: ryeLib,
+      travelMode: google.maps.TravelMode[selectedMode]
+    };
 
-google.maps.event.addDomListener(window, 'load', initialize);
-
-// ===============
-
-var musicApp = {};
-
-// Call to get Foursquare results relating to the desire radius
-musicApp.getInfo = function(genre){
-  $.ajax({
-      url : 'https://api.spotify.com/v1/search',
-      // dataType : 'jsonp',
-      type : 'GET',
-      data : {
-          client_id : 'de3105c7d73d4b4daad0f1b08ec2ce7f',
-          client_secret : '65578e7d558b4c2fb7a649c9c7541ca8',
-          // redirect_uri: 'http://localhost:8005/callback',
-          q: 'study ' +  genre,
-          type: 'playlist',
-          limit: 20
-      },
-      success: function(res) {
-          //console.log what the original response comes back as
-          console.log(res);
-          musicApp.displayMusic(res.playlists.items);
+    directionsService.route(request, function(response, status){
+      if (status == google.maps.DirectionsStatus.OK) {
+        directionDisplay.setDirections(response);
       }
-  });
-};
+    });
+  }
 
-musicApp.displayMusic = function(playlists) { 
-  console.log(playlists);
-  $('.musicItems').empty();
-  // var $title = $('<h4>').text('Study Playlists');
-  // $('.musicItems').append($title);
-  $.each(playlists, function(i, single) {
-    var $name = $('<h3>').html('<a href ="'+ single.external_urls.spotify +'" target="_blank">'+ single.name + '</a>'); 
-    var $photo = $('<img>').attr('src', single.images[0].url);
-    // var $photoContainer = $('<div>').addClass('playlistPhoto').append($photo);
-    // var $itemInnerInfo = $('<div>').addClass('itemInnerInfo').append($name);
-    // var $itemInfo = $('<div>').addClass('itemInfo').append($itemInnerInfo, $photoContainer);
-    var $singleItem = $('<div>').addClass('singleItem', 'clearfix').append($name, $photo);
-    $('.musicItems').append($singleItem);
-  });
-};
-
+  google.maps.event.addDomListener(window, 'load', initialize);
+}; // end of mapDisplay
 
 studyApp.init = function() {
 	studyApp.events();
   studyApp.getLocation();
-  // musicApp.events();
 };
 
 $(document).ready(function(){
 	studyApp.init();
-  // musicApp.init();
 
-  $('#upTop').on('click', function(){
-        $('html,body').animate({scrollTop: $('body').offset().top}, 800);
-    }); 
 });
