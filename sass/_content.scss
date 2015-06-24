@@ -1,0 +1,171 @@
+.printContainer {
+	display: flex;
+	flex-wrap:wrap;
+	.singleItem {
+		// width:50%;
+		border-bottom: 1px solid rgba(0,0,0,0.2);
+		// border-bottom: none;
+		padding: 10px 0;
+		&:last-child {
+			border-bottom: 1px solid rgba(0,0,0,0.2);
+		}
+		.itemName {
+			border-bottom: 1px solid $blue;
+		}
+		.itemInfo {
+			display: flex;
+			justify-content: space-between;
+			.itemInnerInfo {
+				padding-left: 20px;
+				h3 {
+					font-size: 16px;
+					text-transform: uppercase;
+					text-align: left;
+					color: $red;
+					letter-spacing: 1px;
+					width: 400px; 
+					a {
+						text-decoration: none;
+						color: $red;
+						padding: 3px;
+						&:hover {
+							background-color: rgba(0,0,0,0.1);
+						}
+					}
+				}
+				p {
+					font-size: 14px;
+				}
+			}
+			img {
+				width: 120px;
+				display: block;
+				border-radius: 50%;
+				border: 5px solid $blue;
+				&:hover {
+					cursor: pointer;
+				}
+			}
+		}
+		.photoContainer {
+			// border: 1px solid red;
+			padding: 10px;
+
+		}
+	}
+}
+
+.hidden {
+	display: none;
+}
+
+.printContainer {
+	min-height: 100vh;
+	// overflow: auto;
+	h4 {
+		font-size: 30px;
+		margin: 20px auto;
+		text-transform: uppercase;
+		padding: 5px 10px;
+		background-color: rgba(0,0,0,0.3);
+		letter-spacing: 3px;
+		// padding-bottom: 10px;
+		// border-bottom: 3px solid #000;
+	}
+	.wrapper {
+		margin: 0 auto;
+		display: flex;
+		.printItems {
+			flex: 1 0 50%;
+			// margin-right: 50px;
+			padding-right: 10px;
+			border-right: 1px solid rgba(0,0,0,0.1);
+			p.notice {
+				text-align: center;
+				font-family: 'Lato';
+				text-transform: uppercase;
+				background-color: $red;
+				color: #fff;
+				margin: 0 auto;
+				padding: 10px 0;
+			}
+		}
+		.musicItems {
+			padding-left: 10px;
+			flex: 1 0 50%;
+			display: flex;
+			flex-wrap: wrap;
+			border-left: 1px solid rgba(0,0,0,0.1);
+			h3 {
+				line-height: 25px;
+				font-size: 15px;
+				text-transform: uppercase;
+				width: 250px;
+				margin: 0 auto;
+				a{
+					color: $red;
+					text-decoration: none;
+					padding: 3px;
+					background-color: rgba(255,255,255,0.9);
+					&:hover {
+						background-color: rgba(0,0,0,0.1);
+					}
+				}
+			}
+			h4 {
+				// flex: 1 0 100%;
+				// display: block;
+				// max-height: 47px;
+			}
+			.singleItem{
+				flex: 1 0 40%;
+				display: flex;
+				flex-direction: column;
+				align-item: center;
+				justify-content: center;
+				padding: 20px;
+				img {
+					width: 200px;
+					display: block;
+					margin: 15px auto 0;
+				}
+			}
+		}
+	}
+}
+
+.singleItem:nth-child(2n+2) {
+	background: $dark;
+	p {
+		color: white;
+		} 
+}
+.musicItems .singleItem:nth-child(1n) {
+	background: #dce4e8;
+}
+
+
+#upTop {
+	display: block;
+	padding: 10px;
+	background-color: $red;
+	margin: 0 auto;
+	text-align: center;
+	font-family: 'Lato';
+	font-weight: 700;
+	letter-spacing: 3px;
+	color: #fff;
+	margin-top: 25px;
+	&:hover {
+		cursor: pointer;
+	}
+	p {
+		text-transform: uppercase;
+	}
+}
+
+.map {
+	width: 100%;
+	height: 300px;
+	margin-top: 20px;
+}
