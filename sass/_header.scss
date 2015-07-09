@@ -1,6 +1,9 @@
 .wrapper {
 	width: 97%;
 	margin: 0 auto;
+	@media #{$mobile} {
+		width: 100%;
+	}
 }
 
 .flex {
@@ -21,6 +24,10 @@ header {
 	min-height: 100vh;
 	.headerContainer {
 		display: flex;
+		@media #{$mobile} {
+			flex-direction: column;
+			// width: 100%;
+		}
 		flex-wrap:wrap;
 		margin: auto;
 		max-width: 100%;
@@ -51,6 +58,9 @@ header {
 
 .appInfo, .selections {
 	flex: 1 0 50%;
+	@media #{$mobile} {
+	flex: 1 0 auto;
+	}
 }
 
 .appInfo {
@@ -64,6 +74,10 @@ header {
 		line-height: 20px;
 		padding: 25px;
 		margin: 25px 25px 25px 0;
+		@media #{$mobile} {
+			margin: 25px 0px;
+			font-size: 13px;
+		}
 	}
 }
 

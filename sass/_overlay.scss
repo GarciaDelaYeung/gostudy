@@ -6,6 +6,10 @@
 	top: 15px;
 	right: 25px;
 	color: rgba(255,255,255,0.5);
+  @media #{$mobile} {
+    top: 5px;
+    right: 5px;
+  }
 	&:hover {
 		color: rgba(255,255,255,1.0);
 		cursor: pointer;
@@ -35,7 +39,9 @@
     width: 500px;
     text-align: center;
   	@media #{$mobile} {
-  		margin: 0 7%;
+  		margin: 0 auto;
+      padding-top: 70px;
+      max-width: 250px;
   	} 
   	@media #{$mobile-landscape} {
   		display: none;
@@ -61,6 +67,10 @@
 .overlay .overlay-close {
   width: 80px;
   height: 80px;
+  @media #{$mobile} {
+    width: 30px;
+    height: 30px;
+  }
   position: absolute;
   right: 20px;
   top: 20px;

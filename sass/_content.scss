@@ -1,6 +1,6 @@
 .printContainer {
 	display: flex;
-	flex-wrap:wrap;
+	flex-wrap: wrap;
 	.singleItem {
 		// width:50%;
 		border-bottom: 1px solid rgba(0,0,0,0.2);
@@ -14,6 +14,9 @@
 		}
 		.itemInfo {
 			display: flex;
+			@media #{$mobile} {
+				flex-direction: column;
+			}
 			justify-content: space-between;
 			.itemInnerInfo {
 				padding-left: 20px;
@@ -24,6 +27,11 @@
 					color: $red;
 					letter-spacing: 1px;
 					width: 400px; 
+					@media #{$mobile} {
+						text-align: center;
+						width: 300px;
+						margin: 0 auto;
+					}
 					a {
 						text-decoration: none;
 						color: $red;
@@ -35,9 +43,15 @@
 				}
 				p {
 					font-size: 14px;
+					@media #{$mobile} {
+						text-align: center;
+					}
 				}
 			}
 			img {
+				@media #{$mobile} {
+					margin: 0 auto;
+				}
 				width: 120px;
 				display: block;
 				border-radius: 50%;
@@ -75,6 +89,9 @@
 	.wrapper {
 		margin: 0 auto;
 		display: flex;
+		@media #{$mobile} {
+			flex-direction: column;
+		}
 		.printItems {
 			flex: 1 0 50%;
 			// margin-right: 50px;
@@ -89,10 +106,19 @@
 				margin: 0 auto;
 				padding: 10px 0;
 			}
+			@media #{$mobile} {
+				flex: 1 0 auto;
+				padding: 0;
+			}
 		}
 		.musicItems {
 			padding-left: 10px;
 			flex: 1 0 50%;
+			@media #{$mobile} {
+				flex: 1 0 auto;
+				flex-direction: column;
+				padding: 0;
+			}
 			display: flex;
 			flex-wrap: wrap;
 			border-left: 1px solid rgba(0,0,0,0.1);
@@ -119,6 +145,9 @@
 			}
 			.singleItem{
 				flex: 1 0 40%;
+				@media #{$mobile} {
+					flex: 1 0 auto;
+				}
 				display: flex;
 				flex-direction: column;
 				align-item: center;
@@ -134,15 +163,36 @@
 	}
 }
 
+.musicContainer {
+	h4 {
+		margin-left: 10px;
+		@media #{$mobile} {
+			margin-left: 0;
+		}
+	}
+	@media #{$mobile} {
+		flex: 1 0 auto;
+	}
+}
+
 .singleItem:nth-child(2n+2) {
-	background: $dark;
+	// background: $dark;
+	background: #dce4e8;
 	p {
-		color: white;
+		// color: white;
+		color: $dark;
 		} 
 }
 .musicItems .singleItem:nth-child(1n) {
-	background: #dce4e8;
+	// background: #dce4e8;
+	background: $dark;
 }
+
+// @media #{$mobile} {
+// 	.printContainer {
+// 		flex-direction: column;
+// 	}
+// }
 
 
 #upTop {

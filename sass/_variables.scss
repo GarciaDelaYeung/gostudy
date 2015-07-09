@@ -11,3 +11,11 @@ $mobile: "(max-width: 480px)";
 $mobile-landscape: "(max-height: 450px)";
 $tablet: "(max-width: 768px)";
 $small-desktop: "(max-width: 940px)";
+
+@media #{$mobile} {
+
+}
+
+@media #{$mobile-landscape} {
+
+}
