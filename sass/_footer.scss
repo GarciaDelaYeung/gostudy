@@ -7,4 +7,13 @@ footer {
 	text-align: center;
 	font-family: 'Lato';
 	font-weight: 300;
+	a {
+		color: #fff;
+		font-weight: 700;
+		text-decoration: none;
+		padding-bottom: 3px;
+		&:hover {
+			border-bottom: 2px solid #fff;
+		}
+	}
 }
