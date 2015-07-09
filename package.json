@@ -1,0 +1,29 @@
+{
+  "name": "gostudy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "gulp-autoprefixer": "^2.3.1",
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.5.2",
+    "gulp-jshint": "^1.11.0",
+    "gulp-notify": "^2.2.0",
+    "gulp-sass": "^2.0.1",
+    "browser-sync": "^2.7.12"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jpyyeung/gostudy.git"
+  },
+  "author": "jenniferyeung",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jpyyeung/gostudy/issues"
+  },
+  "homepage": "https://github.com/jpyyeung/gostudy#readme"
+}

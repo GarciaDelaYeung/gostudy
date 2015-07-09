@@ -1,0 +1,8 @@
+# compiled css #
+**/*.css
+
+# ignore node modules folder #
+/node_modules
+
+# ignore gulpfile #
+gulpfile.js
